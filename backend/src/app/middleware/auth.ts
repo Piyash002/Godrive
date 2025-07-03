@@ -8,8 +8,7 @@ import { User } from './../modules/user/user.model';
 
 export const auth = (requiredRole: (keyof typeof USER_Role)[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const acccessToken = req.cookies.acccessToken || req.headers.authorization?.split(' ');
-    console.log(acccessToken);
+    const acccessToken = req.cookies.accessToken || req.headers.authorization?.split(' ');
     if (!acccessToken) {
       throw new Error('No accessToken Showed');
     }
@@ -17,9 +16,8 @@ export const auth = (requiredRole: (keyof typeof USER_Role)[]) => {
       throw new Error('JWT access secret is not defined');
     }
     const TokenVarification = verifyToken(acccessToken, config.JWT_ACESS_SECRET);
-    console.log(TokenVarification);
-    const { _id, role } = TokenVarification as JwtPayload;
-    const userExist = await User.findById(_id);
+    const { id, role } = TokenVarification as JwtPayload;
+    const userExist = await User.findById({_id:id});
     if (!userExist) {
       throw new Error('User Not Found');
     }
