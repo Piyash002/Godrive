@@ -1,25 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from "react";
+
+import { useState, } from "react";
 
 
 import MobileNavigation from "./MobileResponsiveNavbar";
-import { SearchItem } from "../search/SearchItem";
 import DesktopNavbar from "./DesktopNavbar";
 import Login from "@/pages/Shared/Login";
 const UserNavabar = () => {
      const [searchValue, setSearchValue] = useState("");
-  const [queryParams, setQueryParams] = useState({ search: "" });
+  // const [queryParams, setQueryParams] = useState({ search: "" });
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // const user = useAppSelector((state) => state.auth.user) as { id?: string } | null;
   // const dispatch = useAppDispatch();
   // Handle live search debounce
-    useEffect(() => {
-    const timer = setTimeout(() => {
-      setQueryParams({ search: searchValue });
-    }, 200);
-    return () => clearTimeout(timer);
-  }, [searchValue]);
+  //   useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setQueryParams({ search: searchValue });
+  //   }, 200);
+  //   return () => clearTimeout(timer);
+  // }, [searchValue]);
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
@@ -94,7 +93,7 @@ const UserNavabar = () => {
                   }
                 }}
               />
-              {searchValue && (
+              {/* {searchValue && (
               <div className="">
                   <SearchItem
                   queryParams={queryParams}
@@ -104,7 +103,7 @@ const UserNavabar = () => {
                   }}
                 />
               </div>
-              )}
+              )} */}
             </div>
           </div>
         )}
