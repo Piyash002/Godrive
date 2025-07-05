@@ -1,66 +1,55 @@
 
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
-import { RiAccountCircleFill } from "react-icons/ri";
+import { Button } from "@/components/ui/button";
+import { InputField } from "@/components/user/input/Input";
+import { useForm } from "react-hook-form";
 
-const Login = () => {
-    return (
-             <Dialog>
-      <DialogTrigger asChild>
-        <RiAccountCircleFill/>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>SignIn</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text">
-              Name
-            </Label>
-            <Input id="name"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="Email" className="text-right">
-              Email
-            </Label>
-            <Input id="Email"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="password" className="text-right">
-              Password
-            </Label>
-            <Input id="Password"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="confirmpassword" className="text-right">
-              Confirm password
-            </Label>
-            <Input id="confirm password"  className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" className="w-full bg-amber-500">SignUp</Button>
-        </DialogFooter>
-           <h1>No Account? </h1>
-      </DialogContent>
-   
-    </Dialog>
-  
-    );
-};
+export default function LoginForm() {
+interface  LoginInputs {
+  email:string;
+  password:string;
+}
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginInputs>();
 
-export default Login;
+  const onSubmit = (data: LoginInputs) => {
+    console.log("Login data:", data);
+  };
+
+  return (
+    <div className="max-w-md mx-auto mt-10">
+      <div className="space-y-4 p-6">
+        <h2 className="text-xl font-bold text-center text-black">Sign an account</h2>
+        <form onSubmit={handleSubmit(onSubmit)}  className="space-y-4">
+          <InputField
+          className="text-black"
+            label="Email"
+            name="email"
+            register={register}
+            type="email"
+            placeholder="you@example.com"
+            required
+             rules={{ required: "Email is required" }}
+            error={errors.email?.message}
+          />
+          <InputField
+           className="text-black"
+            label="Password"
+            name="password"
+            type="password"
+            register={register}
+            placeholder="********"
+            required
+             rules={{ required: "Password is required" }}
+            error={errors.password?.message}
+          />
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+}

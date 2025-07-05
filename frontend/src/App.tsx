@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import UserNavabar from "./components/user/navbar/UserNavabar";
 const App = () => {
   return (
- <div className="">
+ <div className="dark:bg-gray-900 dark:text-white">
   <div>
      <UserNavabar/>
   </div>

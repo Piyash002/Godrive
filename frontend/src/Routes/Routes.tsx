@@ -4,6 +4,8 @@ import ContactUs from "@/pages/user/ContuctUs";
 import Home from "@/pages/user/Home";
 import { createBrowserRouter } from "react-router-dom";
 import Booking from './../pages/user/Booking';
+import Login from "@/pages/Shared/Login";
+import Register from "@/pages/Shared/Register";
 
 export const  Router = createBrowserRouter([
     {
@@ -16,5 +18,14 @@ export const  Router = createBrowserRouter([
       { path: "booking", Component: Booking },
     
         ]
+    },
+    {
+      path:'/login',
+      Component: Login
+    },
+    {
+      path:'/register',
+      Component: Register
     }
+    
 ]) 

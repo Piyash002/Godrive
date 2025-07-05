@@ -1,59 +1,85 @@
+import { InputField } from "@/components/user/input/Input";
 import { Button } from "@/components/ui/button";
-import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@radix-ui/react-dialog";
-import { Label } from "@radix-ui/react-label";
-import { RiAccountCircleFill } from "react-icons/ri";
+import { useForm, type SubmitHandler } from "react-hook-form"
+export default function Register() {
 
-const Register = () => {
-    return (
-        <div>
-        <Dialog>
-      <DialogTrigger asChild>
-        <RiAccountCircleFill/>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>SignUp</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="Email" className="text-right">
-              Email
-            </Label>
-            <Input id="Email"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="password" className="text-right">
-              Password
-            </Label>
-            <Input id="Password"  className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="confirmpassword" className="text-right">
-              Confirm password
-            </Label>
-            <Input id="confirm password"  className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" className="w-full bg-amber-500">SignUp</Button>
-        </DialogFooter>
-           <h1>Account created? </h1>
-      </DialogContent>
-   
-    </Dialog>
-        </div>
-    );
-};
+interface Inputs {
+    name: string,
+    number:string,
+    email: string,
+    password: string,
+    rules:string,
+    confirmpassword: string,
+}
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>()
+const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+    console.log(data)
+}
 
-export default Register;
+  return (
+    <div className="p-6">
+      <h2 className="text-xl font-bold text-center text-black  mb-4">Create an Account</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <InputField
+          className="text-black"
+          label="Name"
+          name="name"
+          register={register}
+          placeholder="Your full name"
+          rules={{ required: "Name is required" }}
+           required
+          error={errors.name?.message}
+        />
+        <InputField
+          className="text-black"
+          type="number"
+          label="Number"
+          name="number"
+          register={register}
+          placeholder="0123456789"
+          error={errors.number?.message}
+        />
+        <InputField
+          className="text-black"
+          label="Email"
+          name="email"
+          type="email"
+          register={register}
+          placeholder="you@example.com"
+          rules={{ required: "Email is required" }}
+          required
+          error={errors.email?.message}
+        />
+        <InputField
+          className="text-black"
+          label="Password"
+          name="password"
+          type="password"
+          register={register}
+          placeholder="********"
+          rules={{ required: "Password is required" }}
+          required
+          error={errors.password?.message}
+        />
+        <InputField
+          className="text-black"
+          label="Confirm Password"
+          name="confirmpassword"
+          type="confirmpassword"
+          register={register}
+          placeholder="********"
+          rules={{ required: "confirm password is required" }}
+          required
+          error={errors.confirmpassword?.message}
+        />
+        <Button type="submit" className="w-full">
+          Sign Up
+        </Button>
+      </form>
+    </div>
+  );
+}

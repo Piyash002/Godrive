@@ -1,10 +1,11 @@
 
 import { useState, } from "react";
-
-
 import MobileNavigation from "./MobileResponsiveNavbar";
 import DesktopNavbar from "./DesktopNavbar";
-import Login from "@/pages/Shared/Login";
+
+import ThemeToggle from "@/hooks/ThemeToggle";
+import { FaRegCircleUser } from "react-icons/fa6";
+import AuthModal from "@/pages/Shared/AuthModal";
 const UserNavabar = () => {
      const [searchValue, setSearchValue] = useState("");
   // const [queryParams, setQueryParams] = useState({ search: "" });
@@ -24,7 +25,7 @@ const UserNavabar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
-
+  const [ModalOpen, SetModalOpen ] = useState(false)
   // Close menu when clicking outside
   const handleBackdropClick = (e: React.MouseEvent) => {
     if ((e.target as Element).id === "backdrop") {
@@ -63,9 +64,20 @@ const UserNavabar = () => {
           </a>
 
           {/* Right: Cart and Search */}
-          <div className="flex items-center justify-center  gap-1">
+          <div className="flex items-center justify-center">
+             <ThemeToggle/>
             <button className="text-3xl  px-2 py-1 rounded">
-            <Login/>
+         
+              <div className="font-bold ">
+                               {/* {
+                                user?<><li className="btn btn-outline  px-2 hover:bg-secondary bg-opacity-15" onClick={handleLogout}>Logout</li></>:
+                               }
+                              */}
+      <button onClick={()=>SetModalOpen(true)} className="text-3xl">
+                       <FaRegCircleUser />
+                      </button>
+                      </div>
+                       {ModalOpen && <AuthModal onClose={() => SetModalOpen(false)} />}
             </button>
           </div>
         </div>
@@ -115,7 +127,7 @@ const UserNavabar = () => {
             onClick={handleBackdropClick}
             className="fixed inset-y-16 mt-0 inset-x-0 z-40 bg-opacity-50"
           >
-            <nav className="absolute top-0 left-0  h-full bg-[#2E1065]  shadow-xl z-50 p-4 opacity-95 w-full mx-auto">
+            <nav className="absolute top-0 left-0  h-full bg-[#2E1065]  shadow-xl z-50 p-4  w-full mx-auto">
               <MobileNavigation setIsMobileMenuOpen={setIsMobileMenuOpen} />
             </nav>
           </div>

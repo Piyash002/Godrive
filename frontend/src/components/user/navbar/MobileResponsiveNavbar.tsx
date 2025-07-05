@@ -38,8 +38,8 @@ const MobileNavigation= ({setIsMobileMenuOpen}:any) => {
     //   dispath(logoutUser());
     // }
     return (
-        <div className="  ">
-         <ul className="space-y-1 w-full ">
+        <div>
+         <ul className="space-y-1 text-start">
                 {/* <li className="block px-4 py-2 ">
                  <input  
            onChange={(e) => setSearchValue(e.target.value)}
@@ -82,11 +82,11 @@ const MobileNavigation= ({setIsMobileMenuOpen}:any) => {
 
                 <li>
                   <a
-                    href="/contact"
+                    href="/orders"
                     className="block px-4 py-2 text-white hover:bg-white/10 rounded-md transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Conatct us
+                    Orders
                   </a>
                 </li>
                 <li>

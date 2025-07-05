@@ -1,26 +1,28 @@
 
 import { NavLink} from "react-router-dom";
 // import {  useEffect, useRef, useState } from "react";
-import Cart from "../cart/Cart";
-import Login from "@/pages/Shared/Login";
+ import { FaRegCircleUser } from "react-icons/fa6";
+import ThemeToggle from "@/hooks/ThemeToggle";
+import { useEffect, useRef, useState } from "react";
+import AuthModal from "@/pages/Shared/AuthModal";
 // import { SearchItem } from "../search/SearchItem";
 const DesktopNavbar  = () => {
-// const modalRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       modalRef.current &&
-  //       !modalRef.current.contains(event.target as Node)
-  //     ) {
-  //       SetModalOpen(false);
-  //     }
-  //   };
+const modalRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        SetModalOpen(false);
+      }
+    };
 
-  //    document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
+     document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   // const [searchValue, setSearchValue] = useState("");
   // const [queryParams, setQueryParams] = useState({ search: "" });
 //   useEffect(() => {
@@ -30,7 +32,7 @@ const DesktopNavbar  = () => {
 //   return () => clearTimeout(timer);
 // }, [searchValue]);
 
-  // const [modalOpen, SetModalOpen ] = useState(false)
+  const [modalOpen, SetModalOpen ] = useState(false)
   // // const handleModalOpen = ()=>{
   // //   SetModalOpen(!modalOpen)
   // // }
@@ -129,19 +131,23 @@ const DesktopNavbar  = () => {
       )}
 
         </li > */}
-         <li className="px-4 ">
+         {/* <li className="px-4 ">
           <Cart />
+        </li> */}
+         <li className="px-2 ">
+        <ThemeToggle/>
         </li>
         <li >
-          <div className="  text-white font-bold ">
+          <div className="font-bold ">
                  {/* {
                   user?<><li className="btn btn-outline  px-2 hover:bg-secondary bg-opacity-15" onClick={handleLogout}>Logout</li></>:
                  }
                 */}
-        <NavLink className="text-3xl" to={"/login"}>
-         <Login/>
-        </NavLink>
+        <button onClick={()=>SetModalOpen(true)} className="text-3xl">
+         <FaRegCircleUser />
+        </button>
         </div>
+         {modalOpen && <AuthModal onClose={() => SetModalOpen(false)} />}
         </li>
       </ul>
     </nav>
