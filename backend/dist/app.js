@@ -18,7 +18,7 @@ exports.app.use(express_1.default.json({ limit: '10mb' }));
 exports.app.use(express_1.default.urlencoded({ extended: true, limit: '10mb' }));
 exports.app.use('/api', routs_1.default);
 exports.app.get('/', (req, res) => {
-    res.send('Hello from Express!');
+    res.send('Hello');
 });
 // error handling
 exports.app.use(

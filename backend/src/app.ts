@@ -15,7 +15,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/api', router);
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from Express!');
+  res.send('Hello');
 });
 // error handling
 

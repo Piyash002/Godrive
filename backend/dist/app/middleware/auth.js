@@ -20,8 +20,7 @@ const user_model_1 = require("./../modules/user/user.model");
 const auth = (requiredRole) => {
     return (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         var _a;
-        const acccessToken = req.cookies.acccessToken || ((_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' '));
-        console.log(acccessToken);
+        const acccessToken = req.cookies.accessToken || ((_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' '));
         if (!acccessToken) {
             throw new Error('No accessToken Showed');
         }
@@ -29,9 +28,8 @@ const auth = (requiredRole) => {
             throw new Error('JWT access secret is not defined');
         }
         const TokenVarification = (0, jwt_utils_1.verifyToken)(acccessToken, config_1.config.JWT_ACESS_SECRET);
-        console.log(TokenVarification);
-        const { _id, role } = TokenVarification;
-        const userExist = yield user_model_1.User.findById(_id);
+        const { id, role } = TokenVarification;
+        const userExist = yield user_model_1.User.findById({ _id: id });
         if (!userExist) {
             throw new Error('User Not Found');
         }
