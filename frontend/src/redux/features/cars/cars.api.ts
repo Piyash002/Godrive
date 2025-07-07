@@ -18,14 +18,14 @@ export const carApi = baseApi.injectEndpoints({
         }),
         invalidatesTags:['Users']
        }),
-       getallUser:builder.query({
-        query:()=>({
-            url:'/user',
+       getallCars:builder.query({
+        query:({searchParams})=>({
+            url:`/cars/get-allcar?${searchParams}`,
             method:"GET",
             
         }),
-        providesTags:['Users']
+        providesTags:['Cars']
        })
     }),
 })
-export const {useCreteAcarMutation,useRegistrationMutation,useGetallUserQuery} = carApi
+export const {useCreteAcarMutation,useRegistrationMutation,useGetallCarsQuery} = carApi

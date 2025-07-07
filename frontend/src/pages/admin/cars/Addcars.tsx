@@ -16,6 +16,7 @@ const Addcars = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TCar>();
 
@@ -128,7 +129,6 @@ const Addcars = () => {
           register={register}
           placeholder="Bluetooth, AC, Automatic"
         />
-
        <div>
   <label className="block text-sm font-medium">Images</label>
   <input
@@ -164,7 +164,7 @@ const Addcars = () => {
       ))}
     </div>
   )}
-</div>
+      </div>
 
 
         <div className="grid grid-cols-2 gap-2">
@@ -174,7 +174,7 @@ const Addcars = () => {
           <label><input type="checkbox" {...register("addOns.additionalDriver")} /> Additional Driver</label>
         </div>
 
-        <Button type="submit" className="w-full">Add Car</Button>
+        <Button onClick={()=>reset} type="submit" className="w-full">Add Car</Button>
       </form>
     </div>
   );
