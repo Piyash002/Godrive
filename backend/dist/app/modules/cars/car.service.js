@@ -31,6 +31,51 @@ const createCar = (payaload) => __awaiter(void 0, void 0, void 0, function* () {
     yield newCar.save();
     return newCar;
 });
+const getallcar = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const type = typeof (query === null || query === void 0 ? void 0 : query.type) === "string" ? query.type : '';
+    console.log(type);
+    const price = typeof (query === null || query === void 0 ? void 0 : query.price) === "string" ? query.price : '';
+    const ratings = typeof (query === null || query === void 0 ? void 0 : query.ratings) === "string" ? query.ratings : '';
+    const search = typeof (query === null || query === void 0 ? void 0 : query.search) === "string" ? query.search : '';
+    const page = typeof (query === null || query === void 0 ? void 0 : query.page) === "string" ? query.page : "1";
+    const limit = typeof (query === null || query === void 0 ? void 0 : query.limit) === "string" ? query.limit : "10";
+    const pageInt = parseInt(page);
+    const limitInt = parseInt(limit);
+    const skip = (pageInt - 1) * limitInt;
+    let filters = {};
+    console.log(filters);
+    if (type) {
+        filters = { type: type };
+    }
+    if (ratings) {
+        filters = ({ ratings: { $gte: Number(ratings) } });
+    }
+    if (search.trim() !== "") {
+        const regEx = new RegExp(search, "i");
+        filters = ({
+            $or: [
+                { name: regEx },
+                { type: regEx },
+                { brand: regEx },
+                { description: regEx },
+            ],
+        });
+    }
+    const total = yield car_model_1.CarModel.countDocuments(filters);
+    const result = yield car_model_1.CarModel.find(filters)
+        .sort({ _id: -1 })
+        .skip(skip)
+        .limit(limitInt);
+    const totalPage = Math.ceil(total / limitInt);
+    return {
+        result,
+        totalPage,
+        total,
+        limit: limitInt,
+        page: pageInt,
+    };
+});
 exports.carService = {
-    createCar
+    createCar,
+    getallcar
 };

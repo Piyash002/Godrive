@@ -17,7 +17,19 @@ const createCar:RequestHandler = catchAsync(async(req,res)=>{
     })
 
 });
+const getallCar:RequestHandler = catchAsync(async(req,res)=>{
+    const query = req.query
+    const result = await carService.getallcar(query);
+    sendResponse(res,{
+        success:true,
+        statusCode:StatusCodes.OK,
+        message:"Cart created successfully",
+        data:result
+    })
+
+});
 
 export const careController = {
-    createCar
+    createCar,
+    getallCar
 }

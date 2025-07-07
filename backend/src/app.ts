@@ -5,10 +5,12 @@ import { Application, Request, Response } from 'express';
 import express from 'express';
 import { Error } from 'mongoose';
 import router from './app/routs';
+import { config } from './app/config';
 export const app: Application = express();
 
 //parser
-app.use(cors({origin:'https://godrive-tawny.vercel.app',
+// https://godrive-tawny.vercel.app
+app.use(cors({origin:"https://godrive-tawny.vercel.app",
   credentials:true
 }));
 app.use(express.json());

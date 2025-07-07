@@ -28,6 +28,17 @@ const createCar = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         data: result
     });
 }));
+const getallCar = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const query = req.query;
+    const result = yield car_service_1.carService.getallcar(query);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_codes_1.StatusCodes.OK,
+        message: "Cart created successfully",
+        data: result
+    });
+}));
 exports.careController = {
-    createCar
+    createCar,
+    getallCar
 };
