@@ -7,13 +7,16 @@ import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hook";
 import type { TLoginInputs } from "@/types/types";
 import { verifyToken } from "@/utils/verifiedToken";
+import type { JwtPayload } from "jwt-decode";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 interface LoginProps {
   onLoginSuccess?: () => void;
 }
-
+interface DecodedUser extends JwtPayload {
+  role?: string;
+}
 export default function LoginForm({  onLoginSuccess }: LoginProps) {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -32,8 +35,14 @@ export default function LoginForm({  onLoginSuccess }: LoginProps) {
         if (onLoginSuccess) onLoginSuccess(); 
           navigate('/')
           }
-      const user = verifyToken(res.data.accessToken);
+      const user = verifyToken(res.data.accessToken) as DecodedUser;
+      console.log(user)
       dispatch(setUser({user:user , token:res.data.accessToken}))
+      if (user?.role  === "ADMIN") {
+      navigate("/admin");
+    } else {
+      navigate("/");
+    }
  } catch (error:any) {
   toast.error(error?.data?.message)
  }

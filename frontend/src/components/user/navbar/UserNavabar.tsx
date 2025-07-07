@@ -55,11 +55,11 @@ const UserNavabar = () => {
           </a>
 
           {/* Right: Cart and Search */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center px-1.5">
              <ThemeToggle/>
           <div className="  font-bold ">
                  {
-                  user?<><li className="btn btn-outline  px-2 hover:bg-secondary bg-opacity-15" onClick={handleLogout}>Logout</li></>: <button onClick={()=>SetModalOpen(true)} className="text-3xl">
+                  user?<><button className="btn btn-outline  px-2 hover:bg-secondary bg-opacity-15" onClick={handleLogout}>Logout</button></>: <button onClick={()=>SetModalOpen(true)} className="text-3xl">
          <FaRegCircleUser />
         </button>}
         </div>
