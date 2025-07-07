@@ -7,9 +7,9 @@ import {
 } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { logoutUser, setUser } from "../auth/authSlice";
-const backendUrl = import.meta.env.VITE_API_URL;
+// const backendUrl = import.meta.env.VITE_API_URL;
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${backendUrl}/api`,
+  baseUrl: `backend-kappa-red-89.vercel.app/api`,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -30,7 +30,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 
   if (result?.error?.status === 401) {
     try {
-      const res = await fetch(`${backendUrl}/api/auth/refresh-token`, {
+      const res = await fetch(`backend-kappa-red-89.vercel.app/api/auth/refresh-token`, {
         method: "POST",
         credentials: "include",
       });
