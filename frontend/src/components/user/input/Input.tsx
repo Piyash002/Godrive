@@ -32,7 +32,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   className = "",
 }) => {
   return (
-    <div className="space-y-1 text-black">
+    <div className="space-y-1 text-black dark:text-white">
       {label && (
         <Label htmlFor={name}>
           {label}

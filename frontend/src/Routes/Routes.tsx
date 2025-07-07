@@ -6,6 +6,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Booking from './../pages/user/Booking';
 import Login from "@/pages/Shared/Login";
 import Register from "@/pages/Shared/Register";
+import AdminLayOut from "@/pages/admin/adminLayout/AdminLayOut";
+import Addcars from "@/pages/admin/cars/Addcars";
+import Dashboard from "@/pages/admin/dashboard/Dashboard";
 
 export const  Router = createBrowserRouter([
     {
@@ -19,6 +22,19 @@ export const  Router = createBrowserRouter([
     
         ]
     },
+    {
+        path: "/admin",
+        Component:AdminLayOut,
+        children:[
+      { index: true, Component: Dashboard},
+      { path: '', Component: Dashboard},
+      { path: "add-car", Component: Addcars },
+      { path: "contact", Component: ContactUs },
+      { path: "booking", Component: Booking },
+    
+        ]
+    },
+
     {
       path:'/login',
       Component: Login

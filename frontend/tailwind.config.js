@@ -15,6 +15,9 @@ module.exports = {
         border: '#E5E7EB',
         destructive: '#DC2626',
       },
+      backgroundImage: {
+        "banner-image": "url('/www.GoDrive.com.png')",
+      },
     },
   },
   plugins: [],

@@ -1,9 +1,10 @@
+import UserDashboard from "@/components/user/dashboard/UserDashboard";
 
 const About = () => {
     return (
         <div className="">
             <h1>
-                This is About Page
+             <UserDashboard/>
             </h1>
         </div>
     );
