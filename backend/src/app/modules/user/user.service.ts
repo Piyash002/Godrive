@@ -8,12 +8,12 @@ import { AppError } from '../../error/AppError';
 import { createToken, verifyToken } from '../../utils/jwt.utils';
 
 const registerUser = async (data: Tuser) => {
-  const { name, email, password, number, confirmPassword } = data;
+  const { name, email, password, number, confirmpassword } = data;
   const existUser = await User.findOne({ email });
   if (existUser) {
     throw new AppError(StatusCodes.CONFLICT, 'You are Already Registered');
   }
-  if (password !== confirmPassword) {
+  if (password !== confirmpassword) {
     throw new AppError(StatusCodes.NOT_ACCEPTABLE, 'Password not matched');
   }
   const newUser = new User({
@@ -21,7 +21,7 @@ const registerUser = async (data: Tuser) => {
     email,
     password,
     number: number ?? '',
-    confirmPassword,
+    confirmpassword,
     role: USER_Role.USER,
   });
   await newUser.save();

@@ -10,7 +10,7 @@ exports.userValidationSchema = zod_1.default.object({
         name: zod_1.default.string(),
         email: zod_1.default.string(),
         password: zod_1.default.string(),
-        confirmPassword: zod_1.default.string(),
+        confirmpassword: zod_1.default.string().trim(),
         number: zod_1.default.string(),
         profile_image: zod_1.default.string().optional(),
         refreshToken: zod_1.default.string().optional(),

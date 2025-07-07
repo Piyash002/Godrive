@@ -41,7 +41,7 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         required: [true, 'password is required'],
     },
-    confirmPassword: {
+    confirmpassword: {
         type: String,
         required: [true, 'password is required'],
     },
@@ -63,6 +63,7 @@ const userSchema = new mongoose_1.Schema({
         type: String,
         required: [true, 'Role is required'],
         enum: Object.keys(user_contant_1.USER_Role),
+        default: user_contant_1.USER_Role.USER
     },
     refreshToken: { type: String },
     createAt: {

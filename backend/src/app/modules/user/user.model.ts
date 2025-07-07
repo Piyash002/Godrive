@@ -7,7 +7,7 @@ const userSchema: Schema<Tuser> = new Schema({
     type: String,
     required: [true, 'password is required'],
   },
-  confirmPassword: {
+  confirmpassword: {
     type: String,
     required: [true, 'password is required'],
   },
@@ -29,6 +29,7 @@ const userSchema: Schema<Tuser> = new Schema({
     type: String,
     required: [true, 'Role is required'],
     enum: Object.keys(USER_Role),
+    default:USER_Role.USER
   },
   refreshToken: { type: String },
   createAt: {

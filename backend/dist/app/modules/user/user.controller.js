@@ -20,6 +20,7 @@ const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const registerUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
+    console.log(data);
     const result = yield user_service_1.userService.registerUser(data);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_codes_1.StatusCodes.OK,
@@ -47,8 +48,7 @@ const loginUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
         success: true,
         message: 'Login Successfully',
         data: {
-            accessToken,
-            refreshToken,
+            accessToken
         },
     });
 }));

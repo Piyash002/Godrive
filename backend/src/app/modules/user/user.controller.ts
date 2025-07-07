@@ -7,6 +7,7 @@ import sendResponse from '../../utils/sendResponse';
 
 const registerUser: RequestHandler = catchAsync(async (req, res) => {
   const data = req.body;
+  console.log(data)
   const result = await userService.registerUser(data);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -34,8 +35,7 @@ const loginUser: RequestHandler = catchAsync(async (req, res) => {
     success: true,
     message: 'Login Successfully',
     data: {
-      accessToken,
-      refreshToken,
+      accessToken
     },
   });
 });

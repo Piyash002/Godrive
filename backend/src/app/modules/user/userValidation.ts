@@ -5,7 +5,7 @@ export const userValidationSchema = z.object({
     name: z.string(),
     email: z.string(),
     password: z.string(),
-    confirmPassword: z.string(),
+    confirmpassword: z.string().trim(),
     number: z.string(),
     profile_image: z.string().optional(),
     refreshToken: z.string().optional(),

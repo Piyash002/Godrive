@@ -11,7 +11,9 @@ const express_1 = __importDefault(require("express"));
 const routs_1 = __importDefault(require("./app/routs"));
 exports.app = (0, express_1.default)();
 //parser
-exports.app.use((0, cors_1.default)({}));
+exports.app.use((0, cors_1.default)({ origin: 'https://godrive-tawny.vercel.app',
+    credentials: true
+}));
 exports.app.use(express_1.default.json());
 exports.app.use((0, cookie_parser_1.default)());
 exports.app.use(express_1.default.json({ limit: '10mb' }));

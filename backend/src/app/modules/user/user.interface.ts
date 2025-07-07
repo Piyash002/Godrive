@@ -3,7 +3,7 @@ import { USER_Role } from './user.contant';
 export interface Tuser extends Document {
   name: string;
   password: string;
-  confirmPassword: string;
+  confirmpassword: string;
   email?: {
     type: string;
   };

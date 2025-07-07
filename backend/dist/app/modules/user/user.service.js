@@ -21,12 +21,12 @@ const config_1 = require("../../config");
 const AppError_1 = require("../../error/AppError");
 const jwt_utils_1 = require("../../utils/jwt.utils");
 const registerUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, email, password, number, confirmPassword } = data;
+    const { name, email, password, number, confirmpassword } = data;
     const existUser = yield user_model_1.User.findOne({ email });
     if (existUser) {
         throw new AppError_1.AppError(http_status_codes_1.StatusCodes.CONFLICT, 'You are Already Registered');
     }
-    if (password !== confirmPassword) {
+    if (password !== confirmpassword) {
         throw new AppError_1.AppError(http_status_codes_1.StatusCodes.NOT_ACCEPTABLE, 'Password not matched');
     }
     const newUser = new user_model_1.User({
@@ -34,7 +34,7 @@ const registerUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
         email,
         password,
         number: number !== null && number !== void 0 ? number : '',
-        confirmPassword,
+        confirmpassword,
         role: user_contant_1.USER_Role.USER,
     });
     yield newUser.save();
