@@ -33,7 +33,6 @@ const getallcar = async(query:Record<string, unknown>)=>{
   const limitInt = parseInt(limit);
   const skip = (pageInt - 1) * limitInt;
   let filters:any = {};
-  console.log(filters)
   if (type) {
     filters = {type:type}
   }
@@ -67,7 +66,12 @@ const getallcar = async(query:Record<string, unknown>)=>{
     page: pageInt,
  }
 }
+const getSingleCar = async(id:string)=>{
+  const result = await CarModel.findById(id);
+  return result
+}
 export const carService = {
     createCar,
-    getallcar
+    getallcar,
+    getSingleCar
 }

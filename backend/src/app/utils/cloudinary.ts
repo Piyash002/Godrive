@@ -26,7 +26,7 @@ export const uploadToCloudinary = async (
     return new Promise<UploadResult>((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          folder: "products",
+          folder: "brands",
           public_id: uuid(),
           resource_type: "image",
         },

@@ -7,7 +7,6 @@ import { StatusCodes } from "http-status-codes";
 
 const createCar:RequestHandler = catchAsync(async(req,res)=>{
     const data = req.body;
-    console.log(data)
     const result = await carService.createCar(data);
     sendResponse(res,{
         success:true,
@@ -23,7 +22,18 @@ const getallCar:RequestHandler = catchAsync(async(req,res)=>{
     sendResponse(res,{
         success:true,
         statusCode:StatusCodes.OK,
-        message:"Cart created successfully",
+        message:"Cars Get successfully",
+        data:result
+    })
+
+});
+const getSingleCar:RequestHandler = catchAsync(async(req,res)=>{
+    const id = req.params.id
+    const result = await carService.getSingleCar(id);
+    sendResponse(res,{
+        success:true,
+        statusCode:StatusCodes.OK,
+        message:"Car get successfully",
         data:result
     })
 
@@ -31,5 +41,6 @@ const getallCar:RequestHandler = catchAsync(async(req,res)=>{
 
 export const careController = {
     createCar,
-    getallCar
+    getallCar,
+    getSingleCar
 }

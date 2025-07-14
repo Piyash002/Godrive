@@ -43,7 +43,6 @@ const getallcar = (query) => __awaiter(void 0, void 0, void 0, function* () {
     const limitInt = parseInt(limit);
     const skip = (pageInt - 1) * limitInt;
     let filters = {};
-    console.log(filters);
     if (type) {
         filters = { type: type };
     }
@@ -75,7 +74,12 @@ const getallcar = (query) => __awaiter(void 0, void 0, void 0, function* () {
         page: pageInt,
     };
 });
+const getSingleCar = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield car_model_1.CarModel.findById(id);
+    return result;
+});
 exports.carService = {
     createCar,
-    getallcar
+    getallcar,
+    getSingleCar
 };

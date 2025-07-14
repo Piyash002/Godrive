@@ -9,7 +9,10 @@ import { config } from './app/config';
 export const app: Application = express();
 
 //parser
-app.use(cors({origin:"https://godrive-tawny.vercel.app",
+// https://godrive-tawny.vercel.app
+// http://localhost:5173
+
+app.use(cors({origin:"http://localhost:5173",
   credentials:true
 }));
 app.use(express.json());

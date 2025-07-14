@@ -11,7 +11,9 @@ const express_1 = __importDefault(require("express"));
 const routs_1 = __importDefault(require("./app/routs"));
 exports.app = (0, express_1.default)();
 //parser
-exports.app.use((0, cors_1.default)({ origin: "https://godrive-tawny.vercel.app",
+// https://godrive-tawny.vercel.app
+// http://localhost:5173
+exports.app.use((0, cors_1.default)({ origin: "http://localhost:5173",
     credentials: true
 }));
 exports.app.use(express_1.default.json());

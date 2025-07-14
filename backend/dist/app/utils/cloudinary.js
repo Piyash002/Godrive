@@ -28,7 +28,7 @@ const uploadToCloudinary = (files) => __awaiter(void 0, void 0, void 0, function
     const uploadPromises = filesArray.map((file) => {
         return new Promise((resolve, reject) => {
             cloudinary_1.v2.uploader.upload_stream({
-                folder: "products",
+                folder: "brands",
                 public_id: (0, uuid_1.v4)(),
                 resource_type: "image",
             }, (error, result) => {

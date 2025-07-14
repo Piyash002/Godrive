@@ -2,6 +2,7 @@ import express from 'express';
 import { userController } from './user.controller';
 import { userLoginValidationSchema, userValidationSchema } from './userValidation';
 import validateRequest from '../../middleware/validateRequest';
+import { upload } from '../../utils/cloudinary';
 
 const router = express.Router();
 router.post('/register-user', validateRequest(userValidationSchema), userController.registerUser);
