@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { InputField } from "@/components/user/input/Input";
-import { useCreteAcarMutation } from "@/redux/features/cars/cars.api";
+import { useCreteAcarMutation } from "@/redux/features/cars/Cars.api";
 import type { TCar } from "@/types/types";
 import { uploadToCloudinary } from "@/utils/Cloudinary";
 import { useState } from "react";

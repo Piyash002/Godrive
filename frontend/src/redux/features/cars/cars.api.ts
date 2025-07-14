@@ -25,7 +25,15 @@ export const carApi = baseApi.injectEndpoints({
             
         }),
         providesTags:['Cars']
+       }),
+       getSingleCars:builder.query({
+        query:(id)=>({
+            url:`/cars/${id}`,
+            method:"GET",
+            
+        }),
+        providesTags:['Cars']
        })
     }),
 })
-export const {useCreteAcarMutation,useRegistrationMutation,useGetallCarsQuery} = carApi
+export const {useCreteAcarMutation,useRegistrationMutation,useGetallCarsQuery, useGetSingleCarsQuery} = carApi

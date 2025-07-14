@@ -9,6 +9,7 @@ import AdminLayOut from "@/pages/admin/adminLayout/AdminLayOut";
 import Addcars from "@/pages/admin/cars/Addcars";
 import Dashboard from "@/pages/admin/dashboard/Dashboard";
 import CarsPage from "@/pages/user/CarsPage";
+import { CarDetailsPage } from "@/components/user/car/CarDetailsPage";
 
 
 export const  Router = createBrowserRouter([
@@ -20,6 +21,7 @@ export const  Router = createBrowserRouter([
       { path: "about", Component: About },
       { path: "contact", Component: ContactUs },
       { path: "booking", Component:CarsPage},
+      { path: "booking/:id", Component:CarDetailsPage},
     
         ]
     },
@@ -29,6 +31,7 @@ export const  Router = createBrowserRouter([
         children:[
       { index: true, Component: Dashboard},
       { path: '', Component: Dashboard},
+      { path: "add-car", Component: Addcars },
       { path: "add-car", Component: Addcars },
     
         ]

@@ -1,5 +1,5 @@
 
-const AddcarCard = () => {
+const DesktopFilter = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const AddcarCard = () => {
     );
 };
 
-export default AddcarCard;
+export default DesktopFilter;
