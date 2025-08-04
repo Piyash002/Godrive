@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/form/InputField.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import type { UseFormRegister, RegisterOptions } from "react-hook-form";
 
-
 interface InputFieldProps {
   label?: string;
   name: string;
   type?: string;
-  rules?:RegisterOptions
+  rules?: RegisterOptions;
   register: UseFormRegister<any>;
   placeholder?: string;
   error?: string;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutDashboard, Package, PlusCircle, List, Users, Settings, Menu, X } from "lucide-react";
+import { LayoutDashboard, Package, PlusCircle, List, Users, Settings, Menu, X,  } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import ThemeToggle from "@/hooks/ThemeToggle";
 
@@ -10,6 +10,14 @@ const navItems = [
     icon: Package,
     submenu: [
       { name: "Add Car", icon: PlusCircle, path: "/admin/add-car" },
+      { name: "Update Car", icon: List, path: "/admin/update-car" },
+    ],
+  },
+  {
+    name: "Brands",
+    icon:PlusCircle,
+    submenu: [
+      { name: "Add Brand", icon: PlusCircle, path: "/admin/add-brand" },
       { name: "Update Car", icon: List, path: "/admin/update-car" },
     ],
   },

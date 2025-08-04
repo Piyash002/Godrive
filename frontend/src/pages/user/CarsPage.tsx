@@ -44,7 +44,7 @@ const CarsPage = () => {
       </div>
     </div>
        <div className=" lg:hidden lg:w-1/3">
-      <div className="bg-white dark:bg-black  p-4 shadow rounded">
+      <div className=" bg-white dark:bg-black text-black  p-4 shadow rounded">
        <MoblieFilter onFilterChange={handleFilters}/>
         {/* Filter form goes here */}
       </div>

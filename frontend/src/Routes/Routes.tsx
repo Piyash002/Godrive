@@ -10,6 +10,7 @@ import Addcars from "@/pages/admin/cars/Addcars";
 import Dashboard from "@/pages/admin/dashboard/Dashboard";
 import CarsPage from "@/pages/user/CarsPage";
 import { CarDetailsPage } from "@/components/user/car/CarDetailsPage";
+import Addbrand from "@/pages/admin/brand/Addbrand";
 
 
 export const  Router = createBrowserRouter([
@@ -32,7 +33,7 @@ export const  Router = createBrowserRouter([
       { index: true, Component: Dashboard},
       { path: '', Component: Dashboard},
       { path: "add-car", Component: Addcars },
-      { path: "add-car", Component: Addcars },
+      { path: "add-brand", Component: Addbrand },
     
         ]
     },

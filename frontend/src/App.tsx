@@ -4,10 +4,10 @@ import UserNavabar from "./components/user/navbar/UserNavabar";
 const App = () => {
   return (
  <div className=" ">
-  <div>
+  <div className="">
      <UserNavabar/>
   </div>
-  <div className="">
+  <div className="mt-12">
      <Outlet/>
   </div>
  </div>

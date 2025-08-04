@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const MobileNavigation= ({setIsMobileMenuOpen}:any) => {
     return (
-        <div>
+        <div className="">
          <ul className="space-y-1 text-start">
                 <li>
                   <a

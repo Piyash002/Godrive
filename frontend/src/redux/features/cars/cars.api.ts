@@ -22,7 +22,6 @@ export const carApi = baseApi.injectEndpoints({
         query:({searchParams})=>({
             url:`/cars/get-allcar?${searchParams}`,
             method:"GET",
-            
         }),
         providesTags:['Cars']
        }),

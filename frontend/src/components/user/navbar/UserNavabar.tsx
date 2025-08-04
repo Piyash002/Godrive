@@ -1,5 +1,4 @@
-
-import { useState, } from "react";
+import { useEffect, useState } from "react";
 import MobileNavigation from "./MobileResponsiveNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 import ThemeToggle from "@/hooks/ThemeToggle";
@@ -7,34 +6,47 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import AuthModal from "@/pages/Shared/AuthModal";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { logoutUser } from "@/redux/features/auth/authSlice";
-const UserNavabar = () => {
+
+const UserNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dispatch = useAppDispatch()
-    const user = useAppSelector((state) => state.auth.user) as { id?: string } | null;
-       const handleLogout = () => {
-      dispatch(logoutUser());
-    }
+  const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user) as { id?: string } | null;
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
-  const [ModalOpen, SetModalOpen ] = useState(false)
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   const handleBackdropClick = (e: React.MouseEvent) => {
     if ((e.target as Element).id === "backdrop") {
       setIsMobileMenuOpen(false);
     }
   };
-    return (
-        <div>
-      <header className="bg-[#2E1065] text-white sticky top-0 z-50 shadow-md mx-auto w-full text-center h-fit">
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  return (
+    <header className="bg-[#2E1065] text-white fixed top-0 left-0 z-50 w-full shadow-md">
       {/* Desktop Navbar */}
       <div className="hidden md:block">
-        <DesktopNavbar/>
+        <DesktopNavbar />
       </div>
 
       {/* Mobile Navbar */}
-      <div className="md:hidden  py-3 w-full  mx-auto">
-        <div className="flex items-center justify-between mx-auto text-center">
-          {/* Left: Mobile Menu Button */}
+      <div className="md:hidden
+       py-3  w-full">
+        <div className="flex items-center justify-between px-4">
+          {/* Menu Toggle */}
           <button
             onClick={toggleMobileMenu}
             className="p-2 rounded-md hover:bg-white/10"
@@ -48,41 +60,52 @@ const UserNavabar = () => {
               )}
             </svg>
           </button>
-          {/* Center: Logo */}
-          <a href="/" 
-          className=" font-bold font-serif">
-           <img src="/ChatGPT Image Jul 4, 2025, 05_05_40 PM.png" alt="" className="h-7 w-auto object-contain"   />
+
+          {/* Logo */}
+          <a href="/" className="font-bold font-serif">
+            <img
+              src="/ChatGPT Image Jul 4, 2025, 05_05_40 PM.png"
+              alt="Logo"
+              className="h-7 w-auto object-contain"
+            />
           </a>
 
-          {/* Right: Cart and Search */}
-          <div className="flex items-center justify-center px-1.5">
-             <ThemeToggle/>
-          <div className="  font-bold ">
-                 {
-                  user?<><button className="btn btn-outline  px-2 hover:bg-secondary bg-opacity-15" onClick={handleLogout}>Logout</button></>: <button onClick={()=>SetModalOpen(true)} className="text-3xl">
-         <FaRegCircleUser />
-        </button>}
-        </div>
-         {ModalOpen && <AuthModal onClose={() => SetModalOpen(false)} />}
+          {/* User & Theme */}
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            {user ? (
+              <button
+                className="btn btn-outline px-2 hover:bg-secondary bg-opacity-15"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            ) : (
+              <button onClick={() => setModalOpen(true)} className="text-3xl">
+                <FaRegCircleUser />
+              </button>
+            )}
           </div>
         </div>
+
         {/* Mobile Slide Menu */}
         {isMobileMenuOpen && (
           <div
             id="backdrop"
             onClick={handleBackdropClick}
-            className="fixed inset-y-16 mt-0 inset-x-0 z-40 bg-opacity-50"
+            className="fixed inset-0 top-0 left-0   z-40"
           >
-            <nav className="absolute top-0 left-0  h-full bg-[#2E1065]  shadow-xl z-50 p-4  w-full mx-auto">
+            <nav className="fixed top-16 left-0 h-full w-64
+              overflow-y-auto bg-[#2E1065]  z-50 p-4">
               <MobileNavigation setIsMobileMenuOpen={setIsMobileMenuOpen} />
             </nav>
           </div>
         )}
+        {/* Auth Modal */}
+        {modalOpen && <AuthModal onClose={() => setModalOpen(false)} />}
       </div>
-
     </header>
-        </div>
-    );
+  );
 };
 
-export default UserNavabar;
+export default UserNavbar;
